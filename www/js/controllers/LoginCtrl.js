@@ -1,6 +1,6 @@
 (function(){
 
-    var LoginCtrl = function($scope,hello){
+    var LoginCtrl = function($scope){
     console.log("in login ctrl");
         hello.init({
             google : '656984324806-sr0q9vq78tlna4hvhlmcgp2bs2ut8uj8.apps.googleusercontent.com',
@@ -13,9 +13,10 @@
             redirect_uri : 'http://adodson.com/hello.js/redirect.html',
             oauth_proxy: "https://auth-server.herokuapp.com/proxy"
          });
-    
+    console.log("hello initialized");
         
         $scope.loginHandler = function(r) {
+            console.log("In loginHandler");
             logR(r);
             hello(r.network).api('me').on('complete', log);
         }
@@ -28,7 +29,7 @@
         
     };
 
-    LoginCtrl.$inject = ['$scope','hello'];
+    LoginCtrl.$inject = ['$scope'];
 
     angular.module('starter').controller('LoginCtrl',LoginCtrl);
 }());
